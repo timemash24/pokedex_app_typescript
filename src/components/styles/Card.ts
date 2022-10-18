@@ -13,4 +13,7 @@ export const Card = styled.div`
 export const CardContainer = styled.ul`
   display: flex;
   flex-wrap: wrap;
+  max-height: 700px;
+  overflow-y: scroll;
+  align-self: center;
 `;

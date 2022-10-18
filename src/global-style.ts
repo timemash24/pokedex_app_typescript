@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import BackgroundImg from './img/background.jpg';
 
 export const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
@@ -64,12 +65,13 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    max-width: 700px;
+    max-width: 600px;
     width: 100%;
     font-size: 14px;
     margin: 0 auto;
-    background-color: antiquewhite;
+    background-image: url(${BackgroundImg});
     color: black;
+    overflow-y: hidden;
   }
 
   a {

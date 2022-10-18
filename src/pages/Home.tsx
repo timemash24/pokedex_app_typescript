@@ -1,6 +1,7 @@
 import { getPokemonList, ListItem } from 'api/getPokemonList';
 import React, { useEffect, useMemo, useState } from 'react';
 import Thumbnail from 'components/Thumbnail';
+import { getPokemonSpecies, PokemonSpecies } from 'api/getPokemonSpecies';
 
 type PokemonThumbnail = ListItem & {
   img: string;

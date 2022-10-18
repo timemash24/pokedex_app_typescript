@@ -43,6 +43,7 @@ export interface Pokemon {
   types: Type[];
   abilities: Ability[];
   stats: Stats[];
+  weight: number;
 }
 
 export const getPokemon = async (id: number) => {

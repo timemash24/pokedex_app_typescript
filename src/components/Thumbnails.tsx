@@ -2,6 +2,7 @@ import { PokemonList } from 'pages/Home';
 import React, { useMemo } from 'react';
 import Thumbnail from 'components/Thumbnail';
 import { ListItem } from 'api/getPokemonList';
+import { CardContainer } from './styles/Card';
 
 type Props = {
   //   pokemonList: PokemonList[];
@@ -17,13 +18,13 @@ function Thumbnails({ listItem }: Props) {
   }, [listItem]);
 
   return (
-    <ul>
+    <CardContainer>
       {pokemonList?.map((pokemon) => (
         <li key={pokemon.name}>
           <Thumbnail id={pokemon.id} name={pokemon.name} url={pokemon.url} />
         </li>
       ))}
-    </ul>
+    </CardContainer>
   );
 }
 

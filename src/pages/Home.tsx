@@ -36,12 +36,7 @@ function Home() {
     usePokemonList();
   }, []);
 
-  return (
-    <div>
-      <h1>Home</h1>
-      <Thumbnails listItem={listItem} />
-    </div>
-  );
+  return <Thumbnails listItem={listItem} />;
 }
 
 export default Home;

@@ -65,13 +65,15 @@ function Detail() {
       <h1>{pokemon?.name}</h1>
       <div>
         <section>
+          {!isBaby && prevEvolImg !== '' ? <img src={prevEvolImg} alt="evolves from" /> : null}
           <img src={pokemon?.sprites.front_default} alt="front" />
           <img src={pokemon?.sprites.back_default} alt="back" />
-          {!isBaby && prevEvolImg !== '' ? <img src={prevEvolImg} alt="evolves from" /> : null}
         </section>
         <section>
           {pokemonSpecies?.flavor_text_entries.map((text) =>
-            text.language.name === 'en' && text.version.name === 'pearl' ? <li>{text.flavor_text}</li> : null,
+            text.language.name === 'en' && text.version.name === 'pearl' ? (
+              <li key={text.language.name}>{text.flavor_text}</li>
+            ) : null,
           )}
           <p>{pokemonSpecies?.flavor_text_entries[0].flavor_text}</p>
           <ul>

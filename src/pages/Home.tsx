@@ -2,6 +2,7 @@ import { getPokemonList, ListItem } from 'api/getPokemonList';
 import React, { useEffect, useMemo, useState } from 'react';
 import Thumbnail from 'components/Thumbnail';
 import { getPokemonSpecies, PokemonSpecies } from 'api/getPokemonSpecies';
+import Thumbnails from 'components/Thumbnails';
 
 type PokemonThumbnail = ListItem & {
   img: string;
@@ -36,14 +37,7 @@ function Home() {
   return (
     <div>
       <h1>Home</h1>
-      <ul>
-        {pokemonList?.map((pokemon) => (
-          <li key={pokemon.name}>
-            {pokemon.name}
-            <Thumbnail id={pokemon.id} name={pokemon.name} url={pokemon.url} />
-          </li>
-        ))}
-      </ul>
+      <Thumbnails pokemonList={pokemonList} />
     </div>
   );
 }

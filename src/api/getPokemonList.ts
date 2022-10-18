@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-const BASE_URL = `https://pokeapi.co/api/v2/pokemon`;
+export const BASE_URL = `https://pokeapi.co/api/v2/pokemon`;
 const MAX_POKEMON_COUNT = 151;
 
 export interface ListItem {

@@ -15,14 +15,16 @@ export type PokemonList = ListItem & {
 const IMG_URL = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
 
 function Home() {
-  const [pokemonList, setPokemonList] = useState<PokemonList[]>([]);
+  // const [pokemonList, setPokemonList] = useState<PokemonList[]>([]);
   const [thumbnailList, setThumbnailList] = useState<PokemonThumbnail[]>([]);
+  const [listItem, setListItem] = useState<ListItem[]>([]);
 
   const usePokemonList = async () => {
     try {
       await getPokemonList().then((res) => {
         if (res) {
-          setPokemonList(res?.results.map((item, index) => ({ id: index + 1, ...item })));
+          // setPokemonList(res?.results.map((item, index) => ({ id: index + 1, ...item })));
+          setListItem(res.results);
         }
       });
     } catch (error) {
@@ -37,7 +39,7 @@ function Home() {
   return (
     <div>
       <h1>Home</h1>
-      <Thumbnails pokemonList={pokemonList} />
+      <Thumbnails listItem={listItem} />
     </div>
   );
 }

@@ -14,6 +14,7 @@ function Thumbnail({ id, name, url }: PokemonList) {
   return (
     <div>
       <Link to={`/pokemon/${id}`}>
+        <span>{name}</span>
         <img src={`${IMG_URL}/${id}.png`} alt={`thumbnail${id}`} />
       </Link>
     </div>

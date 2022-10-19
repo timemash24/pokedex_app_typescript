@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 export const Card = styled.div`
+  position: relative;
   max-width: 120px;
   max-height: 120px;
   background-color: lightgrey;
@@ -19,10 +20,11 @@ export const Card = styled.div`
       opacity: 0.4;
     }
     & span {
-      width: 100px;
-      line-height: 100px;
       display: block;
       position: absolute;
+      top: 40%;
+      width: 100px;
+      background: transparent;
       z-index: 2;
       font-weight: bold;
     }
@@ -32,7 +34,7 @@ export const Card = styled.div`
 export const Container = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  max-height: 800px;
+  max-height: 700px;
   width: 100%;
   overflow-y: scroll;
   align-self: center;
@@ -42,6 +44,9 @@ export const Container = styled.ul`
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   & li {
     height: 120px;
+  }
+  @media screen and (max-width: 650px) {
+    justify-content: center;
   }
 `;
 

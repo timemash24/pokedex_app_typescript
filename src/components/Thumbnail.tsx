@@ -11,7 +11,7 @@ type PokemonThumbnail = ListItem & {
 
 const IMG_URL = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
 
-function Thumbnail({ id, name, url }: PokemonList) {
+function Thumbnail({ id, name }: PokemonList) {
   return (
     <Card>
       <Link to={`/pokemon/${id}`}>

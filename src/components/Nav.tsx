@@ -6,7 +6,7 @@ const LOGO_URL =
 
 function Nav() {
   return (
-    <nav>
+    <nav style={{ textAlign: 'center', padding: 30 }}>
       <Link to="/">
         <img src={LOGO_URL} alt="home" />
       </Link>

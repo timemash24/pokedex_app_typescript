@@ -65,7 +65,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    max-width: 600px;
+    max-width: 640px;
     width: 100%;
     font-size: 14px;
     margin: 0 auto;

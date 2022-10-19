@@ -27,6 +27,7 @@ export const Card = styled.div`
       background: transparent;
       z-index: 2;
       font-weight: bold;
+      text-shadow: 2px 2px 2px grey;
     }
   }
 `;
@@ -42,6 +43,13 @@ export const Container = styled.ul`
   margin: 20px 0;
   padding: 20px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  &::-webkit-scrollbar {
+    width: 10px;
+    background-color: #cb3737;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: grey;
+  }
   & li {
     height: 120px;
   }

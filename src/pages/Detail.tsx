@@ -2,6 +2,11 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
 import { Pokemon, getPokemon, Type, Ability, Sprites, Stats } from 'api/getPokemon';
 import { PokemonSpecies, getPokemonSpecies } from 'api/getPokemonSpecies';
+import { faS, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+library.add(faS, faChevronLeft, faChevronRight);
 
 type PokemonInfo = {
   id: number;
@@ -61,7 +66,11 @@ function Detail() {
 
   return (
     <>
-      {numId > 1 ? <Link to={`/pokemon/${numId - 1}`}>{`<`}</Link> : null}
+      {numId > 1 ? (
+        <Link to={`/pokemon/${numId - 1}`}>
+          <FontAwesomeIcon icon={faChevronLeft} />
+        </Link>
+      ) : null}
       <h1>{pokemon?.name}</h1>
       <div>
         <section>
@@ -102,7 +111,11 @@ function Detail() {
           </ul>
         </section>
       </div>
-      {numId < 151 ? <Link to={`/pokemon/${numId + 1}`}>{`>`}</Link> : null}
+      {numId < 151 ? (
+        <Link to={`/pokemon/${numId + 1}`}>
+          <FontAwesomeIcon icon={faChevronRight} />
+        </Link>
+      ) : null}
     </>
   );
 }

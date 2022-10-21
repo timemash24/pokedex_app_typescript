@@ -5,7 +5,7 @@ export const Card = styled.div`
   position: relative;
   max-width: 120px;
   max-height: 120px;
-  background-color: lightgrey;
+  background-color: lightgray;
   text-align: center;
   font-size: 18px;
   border-radius: 5px;
@@ -14,7 +14,7 @@ export const Card = styled.div`
     display: none;
   }
   &:hover {
-    background-color: darkgrey;
+    background-color: darkgray;
     transition: 0.5s;
     & img {
       opacity: 0.4;

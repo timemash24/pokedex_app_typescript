@@ -1,12 +1,16 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { useParams, Link, useLocation } from 'react-router-dom';
-import { Pokemon, getPokemon, Type, Ability, Sprites, Stats } from 'api/getPokemon';
-import { PokemonSpecies, getPokemonSpecies } from 'api/getPokemonSpecies';
-import { faS, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCaretLeft, faCaretRight, faS } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { getPokemon, Pokemon } from 'api/getPokemon';
+import { getPokemonSpecies, PokemonSpecies } from 'api/getPokemonSpecies';
+import InfoImg from 'components/InfoImg';
+import InfoList from 'components/InfoList';
+import { Container } from 'components/styles/Card';
+import { InfoContainer, PageController } from 'components/styles/Info';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
-library.add(faS, faChevronLeft, faChevronRight);
+library.add(faS, faCaretLeft, faCaretRight);
 
 type PokemonInfo = {
   id: number;
@@ -65,58 +69,24 @@ function Detail() {
   }, [id]);
 
   return (
-    <>
-      {numId > 1 ? (
-        <Link to={`/pokemon/${numId - 1}`}>
-          <FontAwesomeIcon icon={faChevronLeft} />
-        </Link>
-      ) : null}
-      <h1>{pokemon?.name}</h1>
-      <div>
-        <section>
-          {!isBaby && prevEvolImg !== '' ? <img src={prevEvolImg} alt="evolves from" /> : null}
-          <img src={pokemon?.sprites.front_default} alt="front" />
-          <img src={pokemon?.sprites.back_default} alt="back" />
-        </section>
-        <section>
-          {pokemonSpecies?.flavor_text_entries.map((text) =>
-            text.language.name === 'en' && text.version.name === 'pearl' ? (
-              <li key={text.language.name}>{text.flavor_text}</li>
-            ) : null,
-          )}
-          <p>{pokemonSpecies?.flavor_text_entries[0].flavor_text}</p>
-          <ul>
-            {pokemonSpecies?.genera.map((g) =>
-              g.language.name === 'en' ? <li key={g.language.name}>{g.genus}</li> : null,
-            )}
-
-            <li>{pokemon?.weight}kg</li>
-          </ul>
-          <ul>
-            {pokemon?.abilities.map((abil) => (
-              <li key={abil.ability.name}>{abil.ability.name}</li>
-            ))}
-          </ul>
-          <ul>
-            {pokemon?.types.map((type) => (
-              <li key={type.slot}>{type.type.name}</li>
-            ))}
-          </ul>
-          <ul>
-            {pokemon?.stats.map((stat) => (
-              <li key={stat.stat.url}>
-                {stat.stat.name}:{stat.base_stat}
-              </li>
-            ))}
-          </ul>
-        </section>
-      </div>
-      {numId < 151 ? (
-        <Link to={`/pokemon/${numId + 1}`}>
-          <FontAwesomeIcon icon={faChevronRight} />
-        </Link>
-      ) : null}
-    </>
+    <Container>
+      <PageController>
+        {numId > 1 ? (
+          <Link to={`/pokemon/${numId - 1}`}>
+            <FontAwesomeIcon icon={faCaretLeft} style={{ fontSize: 30 }} />
+          </Link>
+        ) : null}
+        {numId < 151 ? (
+          <Link to={`/pokemon/${numId + 1}`}>
+            <FontAwesomeIcon icon={faCaretRight} style={{ fontSize: 30 }} />
+          </Link>
+        ) : null}
+      </PageController>
+      <InfoContainer>
+        {pokemon && <InfoImg isBaby={isBaby} prevEvolImg={prevEvolImg} pokemon={pokemon} />}
+        {pokemon && pokemonSpecies && <InfoList pokemon={pokemon} pokemonSpecies={pokemonSpecies} />}
+      </InfoContainer>
+    </Container>
   );
 }
 

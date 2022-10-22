@@ -2,7 +2,8 @@ import { PokemonList } from 'pages/Home';
 import React, { useMemo } from 'react';
 import Thumbnail from 'components/Thumbnail';
 import { ListItem } from 'api/getPokemonList';
-import { Circle, Container, NameDisplay } from './styles/Card';
+import { Circle, Container } from './styles/Card';
+import PokedexHead from './PokedexHead';
 
 type Props = {
   //   pokemonList: PokemonList[];
@@ -18,22 +19,16 @@ function Thumbnails({ listItem }: Props) {
   }, [listItem]);
 
   return (
-    <Container>
-      <div style={{ width: '100%', display: 'flex' }}>
-        <Circle color="blue" big />
-        <Circle color="red" big={false} />
-        <Circle color="yellow" big={false} />
-        <Circle color="green" big={false} />
-        <NameDisplay>
-          <span>Click Pokemon to view details</span>
-        </NameDisplay>
-      </div>
-      {pokemonList?.map((pokemon) => (
-        <li key={pokemon.name}>
-          <Thumbnail id={pokemon.id} name={pokemon.name} url={pokemon.url} />
-        </li>
-      ))}
-    </Container>
+    <>
+      <PokedexHead text="Click Pokemon to view details." />
+      <Container>
+        {pokemonList?.map((pokemon) => (
+          <li key={pokemon.name}>
+            <Thumbnail id={pokemon.id} name={pokemon.name} url={pokemon.url} />
+          </li>
+        ))}
+      </Container>
+    </>
   );
 }
 

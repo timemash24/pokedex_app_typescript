@@ -5,6 +5,7 @@ import { getPokemon, Pokemon } from 'api/getPokemon';
 import { getPokemonSpecies, PokemonSpecies } from 'api/getPokemonSpecies';
 import InfoImg from 'components/InfoImg';
 import InfoList from 'components/InfoList';
+import PokedexHead from 'components/PokedexHead';
 import { Container } from 'components/styles/Card';
 import { InfoContainer, PageController } from 'components/styles/Info';
 import React, { useEffect, useMemo, useState } from 'react';
@@ -69,24 +70,27 @@ function Detail() {
   }, [id]);
 
   return (
-    <Container>
-      <PageController>
-        {numId > 1 ? (
-          <Link to={`/pokemon/${numId - 1}`}>
-            <FontAwesomeIcon icon={faCaretLeft} style={{ fontSize: 30 }} />
-          </Link>
-        ) : null}
-        {numId < 151 ? (
-          <Link to={`/pokemon/${numId + 1}`}>
-            <FontAwesomeIcon icon={faCaretRight} style={{ fontSize: 30 }} />
-          </Link>
-        ) : null}
-      </PageController>
-      <InfoContainer>
-        {pokemon && <InfoImg isBaby={isBaby} prevEvolImg={prevEvolImg} pokemon={pokemon} />}
-        {pokemon && pokemonSpecies && <InfoList pokemon={pokemon} pokemonSpecies={pokemonSpecies} />}
-      </InfoContainer>
-    </Container>
+    <>
+      {pokemon && <PokedexHead text={`${id}. ${pokemon?.name}`} />}
+      <Container>
+        <PageController>
+          {numId > 1 ? (
+            <Link to={`/pokemon/${numId - 1}`}>
+              <FontAwesomeIcon icon={faCaretLeft} style={{ fontSize: 30 }} />
+            </Link>
+          ) : null}
+          {numId < 151 ? (
+            <Link to={`/pokemon/${numId + 1}`}>
+              <FontAwesomeIcon icon={faCaretRight} style={{ fontSize: 30 }} />
+            </Link>
+          ) : null}
+        </PageController>
+        <InfoContainer>
+          {pokemon && <InfoImg isBaby={isBaby} prevEvolImg={prevEvolImg} pokemon={pokemon} />}
+          {pokemon && pokemonSpecies && <InfoList pokemon={pokemon} pokemonSpecies={pokemonSpecies} />}
+        </InfoContainer>
+      </Container>
+    </>
   );
 }
 

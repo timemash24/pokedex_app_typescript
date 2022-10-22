@@ -44,6 +44,7 @@ export interface Pokemon {
   abilities: Ability[];
   stats: Stats[];
   weight: number;
+  height: number;
 }
 
 export const getPokemon = async (id: number) => {

@@ -65,13 +65,14 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    max-width: 640px;
+    max-width: 630px;
     width: 100%;
     font-size: 14px;
     margin: 0 auto;
     background-image: url(${BackgroundImg});
     color: black;
     overflow-y: hidden;
+    font-family: 'Orbitron', sans-serif;
   }
 
   a {

@@ -46,9 +46,9 @@ export const InfoListContainer = styled.section`
   max-height: 500px;
   padding: 10px;
   margin: 10px;
-  font-size: 18px;
+  font-size: 16px;
   color: azure;
-  background-color: rgb(60, 60, 60);
+  background-color: rgb(50, 50, 50);
   & li {
     height: auto;
     padding-bottom: 10px;
@@ -58,5 +58,37 @@ export const InfoListContainer = styled.section`
 export const TypeList = styled.ul`
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 10px;
+  align-items: center;
+  margin: 10px 0;
+`;
+
+export const MainInfoList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  border-top: solid 1px #cb3737;
+  border-bottom: solid 1px #cb3737;
+  margin: 10px 0;
+  & ul {
+    padding: 10px 30px;
+  }
+  & ul:last-child {
+    border-left: solid 1px #cb3737;
+  }
+  & li {
+    padding: 5px;
+  }
+  & span {
+    background-color: rgb(100, 100, 100);
+    /* color: black; */
+    border-radius: 5px;
+    padding: 0 7px;
+    margin-left: 7px;
+  }
+`;
+
+export const Description = styled.ul`
+  padding: 10px;
+  text-align: center;
 `;

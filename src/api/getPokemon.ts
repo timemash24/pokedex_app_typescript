@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios from 'axios';
 
 const BASE_URL = `https://pokeapi.co/api/v2/pokemon`;
 
@@ -50,7 +50,7 @@ export interface Pokemon {
 export const getPokemon = async (id: number) => {
   try {
     const { data } = await axios.get<Pokemon>(`${BASE_URL}/${id}`);
-    console.log(data);
+    // console.log(data);
     return data;
   } catch (error) {
     console.log(error);

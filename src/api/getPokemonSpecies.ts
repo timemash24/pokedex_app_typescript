@@ -47,7 +47,7 @@ export interface PokemonSpecies {
 export const getPokemonSpecies = async (id: number) => {
   try {
     const { data } = await axios.get<PokemonSpecies>(`${BASE_URL}/${id}`);
-    console.log(data);
+    // console.log(data);
     return data;
   } catch (error) {
     console.log(error);

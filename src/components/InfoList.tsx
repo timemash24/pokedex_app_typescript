@@ -1,33 +1,12 @@
 import { Pokemon } from 'api/getPokemon';
 import { PokemonSpecies } from 'api/getPokemonSpecies';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { TextDisplay } from './styles/Card';
 import { InfoListContainer, MainInfoList, TypeList, Description } from './styles/Info';
 
 type Props = {
   pokemon: Pokemon;
   pokemonSpecies: PokemonSpecies;
-};
-
-const color = {
-  Normal: '#bdbdaf',
-  Poison: '#a95c9f',
-  Psychic: '#f461af',
-  Grass: '#8bd54f',
-  Ground: '#ebc856',
-  Ice: '#97f1ff',
-  Fire: '#fa5543',
-  Rock: '#ccbc71',
-  Dragon: '#8574ff',
-  Water: '#56adf3',
-  Bug: '#c4d11f',
-  Dark: '#7c5f4c',
-  Fighting: '#894c3b',
-  Ghost: '#736fcd',
-  Steel: '#c4c2db',
-  Flying: '#79a3ff',
-  Electric: '#fee33a',
-  Fairy: '#f9adff',
 };
 
 function InfoList({ pokemon, pokemonSpecies }: Props) {

@@ -30,7 +30,7 @@ const client = axios.create(axiosConfig);
 export const getPokemonList = async () => {
   try {
     const { data } = await client.get<Response>(BASE_URL);
-    console.log(data);
+    // console.log(data);
     return data;
   } catch (error) {
     console.log(error);

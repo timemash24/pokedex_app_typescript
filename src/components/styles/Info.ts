@@ -81,7 +81,6 @@ export const MainInfoList = styled.div`
   }
   & span {
     background-color: rgb(100, 100, 100);
-    /* color: black; */
     border-radius: 5px;
     padding: 0 7px;
     margin-left: 7px;

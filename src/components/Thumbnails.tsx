@@ -1,12 +1,10 @@
-import { PokemonList } from 'pages/Home';
 import React, { useMemo } from 'react';
 import Thumbnail from 'components/Thumbnail';
 import { ListItem } from 'api/getPokemonList';
-import { Circle, Container } from './styles/Card';
+import { Container } from './styles/Card';
 import PokedexHead from './PokedexHead';
 
 type Props = {
-  //   pokemonList: PokemonList[];
   listItem: ListItem[];
 };
 

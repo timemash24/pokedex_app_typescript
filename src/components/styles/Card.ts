@@ -1,4 +1,3 @@
-import React from 'react';
 import styled, { css } from 'styled-components';
 
 const color: Record<string, string> = {
@@ -64,7 +63,6 @@ export const Container = styled.ul`
   background-color: #cb3737;
   border-radius: 0 0 5px 5px;
   padding: 10px 20px;
-  /* box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); */
   &::-webkit-scrollbar {
     width: 10px;
     background-color: #cb3737;

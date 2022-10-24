@@ -13,15 +13,7 @@ import { Link, useParams } from 'react-router-dom';
 
 library.add(faS, faCaretLeft, faCaretRight);
 
-type PokemonInfo = {
-  id: number;
-  name: string;
-  img: string;
-};
-
 const IMG_URL = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
-const EGG_IMG_URL =
-  'https://static.wikia.nocookie.net/pokemon/images/8/80/%EC%95%8C_%EA%B3%B5%EC%8B%9D%EC%9D%BC%EB%9F%AC.png/revision/latest/scale-to-width-down/180?cb=20110306061646&path-prefix=ko';
 
 function Detail() {
   const { id } = useParams();

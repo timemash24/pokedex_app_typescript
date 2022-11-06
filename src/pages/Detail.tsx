@@ -63,7 +63,7 @@ function Detail() {
 
   return (
     <>
-      {pokemon && <PokedexHead text={`${id}. ${pokemon?.name}`} />}
+      {pokemon && <PokedexHead text={`${id}. ${pokemon?.name}`} isInput={false} />}
       <Container>
         <PageController>
           {numId > 1 ? (

@@ -3,9 +3,10 @@ import { Circle, HeadDeco, TextDisplay } from './styles/Card';
 
 type Props = {
   text: string;
+  isInput: boolean;
 };
 
-function PokedexHead({ text }: Props) {
+function PokedexHead({ text, isInput }: Props) {
   return (
     <HeadDeco>
       <Circle color="blue" big />
@@ -13,7 +14,14 @@ function PokedexHead({ text }: Props) {
       <Circle color="yellow" big={false} />
       <Circle color="green" big={false} />
       <TextDisplay small={false} type="">
-        <span>{text}</span>
+        {isInput ? (
+          <form>
+            <input type="text" placeholder={text} />
+            <input type="submit" value="search" />
+          </form>
+        ) : (
+          <span>{text}</span>
+        )}
       </TextDisplay>
     </HeadDeco>
   );

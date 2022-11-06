@@ -5,12 +5,6 @@ const MAX_POKEMON_COUNT = 151;
 
 export interface ListItem {
   name: string;
-  url: string;
-}
-
-interface Params {
-  limit: number;
-  offset: number;
 }
 
 interface Response {

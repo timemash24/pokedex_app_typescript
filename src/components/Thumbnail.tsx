@@ -1,9 +1,12 @@
-import { PokemonList } from 'pages/Home';
+import { ListItem } from 'api/getPokemonList';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from './styles/Card';
 
 const IMG_URL = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
+type PokemonList = ListItem & {
+  id: number;
+};
 
 function Thumbnail({ id, name }: PokemonList) {
   return (

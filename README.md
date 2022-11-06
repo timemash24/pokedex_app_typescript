@@ -1,46 +1,25 @@
-# Getting Started with Create React App
+# Pokedex App using PokeAPI
+1세대 포켓몬 도감 앱
+<br/>🔗 Demo site https://timemash24.github.io/pokedex_app_typescript/
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 사용 스택
+<img src="https://img.shields.io/badge/TypeScript 4.8.4-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white"/> <img src="https://img.shields.io/badge/React 18.2.0-61DAFB?style=for-the-badge&logo=react&logoColor=black"/> <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/> <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/> <img src="https://img.shields.io/badge/styled components 5.3.6-DB7093?style=for-the-badge&logo=StyledComponents&logoColor=white"/>
 
-## Available Scripts
+## 구현 화면
+### Home
+![pokedex_ts_1](https://user-images.githubusercontent.com/56548122/198931779-1e2c23bf-9002-443d-8c1e-3c97a7a6248b.PNG)
 
-In the project directory, you can run:
+### Detail
+![pokedex_ts_2](https://user-images.githubusercontent.com/56548122/198931792-94269d8f-88e1-4907-af0d-8cd3188b5980.PNG)
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 기능 설명
+- 포켓몬 목록 표시
+  - PokeAPI로 1세대 포켓몬 정보 불러오고 Home 페이지에 썸네일 이미지 표시
+  - 썸네일 마우스 오버할 경우 포켓몬 이름 표시
+  - 썸네일 클릭 시 Detail 페이지로 이동
+- 포켓몬 정보 상세 보기
+  - Detail 페이지에서 PokeAPI로 타입, 스탯 등 현재 포켓몬 상세정보 불러오고 표시
+  - 진화 상태인 경우 이전 모습 이미지 보여주기
+  - styled-components 사용으로 타입에 따라 정해진 색상을 배경으로 타입 정보 표시
+  - 왼쪽, 오른쪽 화살표를 클릭하여 도감 순으로 이전, 다음 포켓몬 상세보기
+- styled-components로 포켓몬 도감 형태의 레이아웃 구현

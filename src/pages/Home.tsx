@@ -3,16 +3,15 @@ import React, { useEffect, useState } from 'react';
 import Thumbnails from 'components/Thumbnails';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { addPokemons } from 'app/pokemonSlice';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function Home() {
-  const [listItem, setListItem] = useState<ListItem[]>([]);
   const dispatch = useAppDispatch();
 
   const usePokemonList = async () => {
     try {
       await getPokemonList().then((res) => {
         if (res) {
-          setListItem(res.results);
           dispatch(addPokemons(res.results));
         }
       });
@@ -25,7 +24,7 @@ function Home() {
     usePokemonList();
   }, []);
 
-  return <Thumbnails listItem={listItem} />;
+  return <Thumbnails />;
 }
 
 export default Home;

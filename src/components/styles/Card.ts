@@ -126,3 +126,23 @@ export const HeadDeco = styled.section`
   border-radius: 5px 5px 0 0;
   padding: 20px 10px 0 10px;
 `;
+
+export const InfoMsg = styled.section`
+  width: 100%;
+  line-height: 300px;
+  text-align: center;
+  font-size: 30px;
+`;
+
+export const SearchForm = styled.form`
+  width: 100%;
+  display: flex;
+  & input {
+    color: azure;
+    font-size: 20px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 0 20px;
+  }
+`;

@@ -1,5 +1,7 @@
-import React from 'react';
-import { Circle, HeadDeco, TextDisplay } from './styles/Card';
+import { useAppDispatch } from 'app/hooks';
+import { filterPokemons } from 'app/pokemonSlice';
+import React, { useState } from 'react';
+import { Circle, HeadDeco, SearchForm, TextDisplay } from './styles/Card';
 
 type Props = {
   text: string;
@@ -7,6 +9,19 @@ type Props = {
 };
 
 function PokedexHead({ text, isInput }: Props) {
+  const dispatch = useAppDispatch();
+  const [textToSearch, setTextToSearch] = useState<string>('');
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(textToSearch);
+    dispatch(filterPokemons(textToSearch));
+  };
+
+  const handleTextToSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTextToSearch(e.target.value);
+  };
+
   return (
     <HeadDeco>
       <Circle color="blue" big />
@@ -15,10 +30,9 @@ function PokedexHead({ text, isInput }: Props) {
       <Circle color="green" big={false} />
       <TextDisplay small={false} type="">
         {isInput ? (
-          <form>
-            <input type="text" placeholder={text} />
-            <input type="submit" value="search" />
-          </form>
+          <SearchForm onSubmit={onSubmit}>
+            <input type="text" placeholder={text} value={textToSearch} onChange={handleTextToSearch} />
+          </SearchForm>
         ) : (
           <span>{text}</span>
         )}

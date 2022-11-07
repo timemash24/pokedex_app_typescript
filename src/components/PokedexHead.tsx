@@ -14,8 +14,8 @@ function PokedexHead({ text, isInput }: Props) {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(textToSearch);
     dispatch(filterPokemons(textToSearch));
+    setTextToSearch('');
   };
 
   const handleTextToSearch = (e: React.ChangeEvent<HTMLInputElement>) => {

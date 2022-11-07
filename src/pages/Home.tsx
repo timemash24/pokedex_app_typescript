@@ -1,9 +1,8 @@
 import { getPokemonList, ListItem } from 'api/getPokemonList';
 import React, { useEffect, useState } from 'react';
 import Thumbnails from 'components/Thumbnails';
-import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { useAppDispatch } from 'app/hooks';
 import { addPokemons } from 'app/pokemonSlice';
-import { useLocation, useNavigate } from 'react-router-dom';
 
 function Home() {
   const dispatch = useAppDispatch();

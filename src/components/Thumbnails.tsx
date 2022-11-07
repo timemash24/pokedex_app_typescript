@@ -1,32 +1,38 @@
-import React, { useMemo } from 'react';
-import Thumbnail, { PokemonList } from 'components/Thumbnail';
+import React from 'react';
+import Thumbnail from 'components/Thumbnail';
 import { useAppSelector } from 'app/hooks';
-import { ListItem } from 'api/getPokemonList';
 import { Container, InfoMsg } from './styles/Card';
 import PokedexHead from './PokedexHead';
 
 function Thumbnails() {
   const pokemonList = useAppSelector((state) => state.pokemons.pokemonList);
-  // id 순으로 정렬 후 뿌리기
-  const sortedPokemonList = useMemo<PokemonList[]>(
-    () => pokemonList.slice().sort((a, b) => a.id - b.id),
-    [pokemonList],
-  );
+  const searchedPokemons = useAppSelector((state) => state.pokemons.searchedPokemons);
+  const isSearching = useAppSelector((state) => state.pokemons.isSearching);
 
   return (
     <>
       <PokedexHead text="Search Pokemon by name." isInput />
-      <Container>
-        {sortedPokemonList.length ? (
-          sortedPokemonList?.map((pokemon) => (
+      {!isSearching && (
+        <Container>
+          {pokemonList?.map((pokemon) => (
             <li key={pokemon.name}>
               <Thumbnail id={pokemon.id} name={pokemon.name} />
             </li>
-          ))
-        ) : (
-          <InfoMsg>Nothing found 🤔</InfoMsg>
-        )}
-      </Container>
+          ))}
+        </Container>
+      )}
+
+      {isSearching && searchedPokemons.length ? (
+        <Container>
+          {searchedPokemons?.map((pokemon) => (
+            <li key={pokemon.name}>
+              <Thumbnail id={pokemon.id} name={pokemon.name} />
+            </li>
+          ))}
+        </Container>
+      ) : (
+        <InfoMsg>No pokemon found 🤔</InfoMsg>
+      )}
     </>
   );
 }

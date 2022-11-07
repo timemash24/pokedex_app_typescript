@@ -1,19 +1,17 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+import { useAppDispatch } from 'app/hooks';
+import { resetPokemons } from 'app/pokemonSlice';
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const LOGO_URL =
   'https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/269px-International_Pok%C3%A9mon_logo.svg.png';
 
-let currentPath = '';
-
 function Nav() {
-  const location = useLocation();
+  const dispatch = useAppDispatch();
 
   const onClick = () => {
-    if (currentPath === location.pathname) window.location.reload();
-
-    currentPath = location.pathname;
+    dispatch(resetPokemons());
   };
 
   return (

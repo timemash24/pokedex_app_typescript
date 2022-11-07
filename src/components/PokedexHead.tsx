@@ -14,7 +14,7 @@ function PokedexHead({ text, isInput }: Props) {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(filterPokemons(textToSearch));
+    dispatch(filterPokemons(textToSearch.toLowerCase()));
     setTextToSearch('');
   };
 

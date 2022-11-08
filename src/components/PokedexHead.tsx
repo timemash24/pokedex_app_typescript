@@ -36,9 +36,15 @@ function PokedexHead({ text, isInput }: Props) {
   };
 
   const onClick = (e: React.MouseEvent<HTMLLIElement>) => {
-    console.log(e.target);
-    // const name = e.target.innerText;
+    const target = e.target as HTMLLIElement;
+    dispatch(filterPokemons(target.innerText.toLowerCase()));
+    setMatchedList([]);
+    setTextToSearch('');
   };
+
+  // const handleKeyDown = (e:React.KeyboardEvent<HTMLUListElement>) => {
+
+  // }
 
   return (
     <HeadDeco>

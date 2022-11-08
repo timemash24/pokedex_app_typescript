@@ -1,7 +1,7 @@
-import { useAppDispatch } from 'app/hooks';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { filterPokemons } from 'app/pokemonSlice';
 import React, { useState } from 'react';
-import { Circle, HeadDeco, SearchForm, TextDisplay } from './styles/Card';
+import { AutoComplete, AutoCompleteContainter, Circle, HeadDeco, SearchForm, TextDisplay } from './styles/Main';
 
 type Props = {
   text: string;
@@ -10,7 +10,9 @@ type Props = {
 
 function PokedexHead({ text, isInput }: Props) {
   const dispatch = useAppDispatch();
+  const pokemonList = useAppSelector((state) => state.pokemons.pokemonList);
   const [textToSearch, setTextToSearch] = useState<string>('');
+  const [matchedList, setMatchedList] = useState<string[]>([]);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,7 +21,23 @@ function PokedexHead({ text, isInput }: Props) {
   };
 
   const handleTextToSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTextToSearch(e.target.value);
+    const text = e.target.value;
+    setTextToSearch(text);
+
+    const newMatchedList: string[] = [];
+    if (text !== '') {
+      const regex = RegExp(`^${text}`);
+      pokemonList.forEach((pokemon) => {
+        if (regex.test(pokemon.name)) newMatchedList.push(pokemon.name);
+      });
+    }
+
+    setMatchedList(newMatchedList);
+  };
+
+  const onClick = (e: React.MouseEvent<HTMLLIElement>) => {
+    console.log(e.target);
+    // const name = e.target.innerText;
   };
 
   return (
@@ -36,6 +54,13 @@ function PokedexHead({ text, isInput }: Props) {
         ) : (
           <span>{text}</span>
         )}
+        <AutoCompleteContainter>
+          {matchedList.map((name) => (
+            <AutoComplete key={name} onClick={onClick}>
+              {name}
+            </AutoComplete>
+          ))}
+        </AutoCompleteContainter>
       </TextDisplay>
     </HeadDeco>
   );

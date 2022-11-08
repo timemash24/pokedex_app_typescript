@@ -1,7 +1,7 @@
 import { Pokemon } from 'api/getPokemon';
 import { PokemonSpecies } from 'api/getPokemonSpecies';
 import React from 'react';
-import { TextDisplay } from './styles/Card';
+import { TextDisplay } from './styles/Main';
 import { InfoListContainer, MainInfoList, TypeList, Description } from './styles/Info';
 
 type Props = {

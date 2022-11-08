@@ -1,7 +1,7 @@
 import React from 'react';
 import Thumbnail from 'components/Thumbnail';
 import { useAppSelector } from 'app/hooks';
-import { Container, InfoMsg } from './styles/Card';
+import { Container, InfoMsg } from './styles/Main';
 import PokedexHead from './PokedexHead';
 
 function Thumbnails() {

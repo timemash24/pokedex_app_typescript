@@ -6,7 +6,7 @@ import { getPokemonSpecies, PokemonSpecies } from 'api/getPokemonSpecies';
 import InfoImg from 'components/InfoImg';
 import InfoList from 'components/InfoList';
 import PokedexHead from 'components/PokedexHead';
-import { Container } from 'components/styles/Card';
+import { Container } from 'components/styles/Main';
 import { InfoContainer, PageController } from 'components/styles/Info';
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';

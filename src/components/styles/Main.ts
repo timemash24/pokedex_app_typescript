@@ -146,3 +146,23 @@ export const SearchForm = styled.form`
     padding: 0 20px;
   }
 `;
+
+export const AutoCompleteContainter = styled.ul`
+  position: absolute;
+  z-index: 3;
+  width: 300px;
+  top: 240px;
+  background-color: rgb(50, 50, 50, 0.8);
+  list-style: none;
+`;
+
+export const AutoComplete = styled.li`
+  position: relative;
+  z-index: 4;
+  padding: 5px 20px;
+  &:hover {
+    background-color: rgb(50, 50, 50);
+    color: yellow;
+    cursor: pointer;
+  }
+`;

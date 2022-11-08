@@ -139,11 +139,12 @@ export const SearchForm = styled.form`
   display: flex;
   & input {
     color: azure;
-    font-size: 20px;
+    font-size: 18px;
     background-color: transparent;
     border: none;
     outline: none;
     padding: 0 20px;
+    font-family: 'Orbitron', sans-serif;
   }
 `;
 
@@ -160,9 +161,11 @@ export const AutoComplete = styled.li`
   position: relative;
   z-index: 4;
   padding: 5px 20px;
+  font-size: 18px;
   &:hover {
-    background-color: rgb(50, 50, 50);
-    color: yellow;
+    background-color: rgb(255, 255, 0, 0.7);
+    color: rgb(50, 50, 50);
+    font-weight: bold;
     cursor: pointer;
   }
 `;

@@ -1,6 +1,7 @@
+/* eslint-disable default-case */
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { filterPokemons } from 'app/pokemonSlice';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { AutoComplete, AutoCompleteContainter, Circle, HeadDeco, SearchForm, TextDisplay } from './styles/Main';
 
 type Props = {
@@ -11,8 +12,10 @@ type Props = {
 function PokedexHead({ text, isInput }: Props) {
   const dispatch = useAppDispatch();
   const pokemonList = useAppSelector((state) => state.pokemons.pokemonList);
+  const autoRef = useRef<HTMLUListElement>(null);
   const [textToSearch, setTextToSearch] = useState<string>('');
   const [matchedList, setMatchedList] = useState<string[]>([]);
+  const [index, setIndex] = useState<number>(-1);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -42,9 +45,36 @@ function PokedexHead({ text, isInput }: Props) {
     setTextToSearch('');
   };
 
-  // const handleKeyDown = (e:React.KeyboardEvent<HTMLUListElement>) => {
-
-  // }
+  const handleKeyArrow = (e: React.KeyboardEvent) => {
+    if (matchedList.length) {
+      switch (e.key) {
+        case 'ArrowDown':
+          setIndex(index + 1);
+          if (autoRef.current?.childElementCount === index + 1) setIndex(0);
+          break;
+        case 'ArrowUp':
+          setIndex(index - 1);
+          if (index <= 0) {
+            setMatchedList([]);
+            setIndex(-1);
+          }
+          break;
+        case 'Enter':
+          e.preventDefault();
+          if (index >= 0) {
+            dispatch(filterPokemons(matchedList[index].toLowerCase()));
+            setMatchedList([]);
+            setIndex(-1);
+            setTextToSearch('');
+          }
+          break;
+        case 'Escape':
+          setMatchedList([]);
+          setIndex(-1);
+          break;
+      }
+    }
+  };
 
   return (
     <HeadDeco>
@@ -52,7 +82,7 @@ function PokedexHead({ text, isInput }: Props) {
       <Circle color="red" big={false} />
       <Circle color="yellow" big={false} />
       <Circle color="green" big={false} />
-      <TextDisplay small={false} type="">
+      <TextDisplay small={false} type="" onKeyDown={handleKeyArrow}>
         {isInput ? (
           <SearchForm onSubmit={onSubmit}>
             <input type="text" placeholder={text} value={textToSearch} onChange={handleTextToSearch} />
@@ -60,9 +90,9 @@ function PokedexHead({ text, isInput }: Props) {
         ) : (
           <span>{text}</span>
         )}
-        <AutoCompleteContainter>
-          {matchedList.map((name) => (
-            <AutoComplete key={name} onClick={onClick}>
+        <AutoCompleteContainter ref={autoRef}>
+          {matchedList.map((name, i) => (
+            <AutoComplete key={name} isFocus={index === i} onClick={onClick}>
               {name}
             </AutoComplete>
           ))}

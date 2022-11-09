@@ -124,12 +124,14 @@ export const HeadDeco = styled.section`
   justify-content: center;
   background-color: #cb3737;
   border-radius: 5px 5px 0 0;
-  padding: 20px 10px 0 10px;
+  padding: 20px 10px 10px 10px;
 `;
 
 export const InfoMsg = styled.section`
   width: 100%;
   line-height: 300px;
+  background-color: #cb3737;
+  border-radius: 0 0 5px 5px;
   text-align: center;
   font-size: 30px;
 `;
@@ -157,11 +159,12 @@ export const AutoCompleteContainter = styled.ul`
   list-style: none;
 `;
 
-export const AutoComplete = styled.li`
+export const AutoComplete = styled.li<{ isFocus?: boolean }>`
   position: relative;
   z-index: 4;
   padding: 5px 20px;
   font-size: 18px;
+  background-color: ${(props) => (props.isFocus ? 'rgb(255, 255, 0, 0.7)' : 'rgb(50, 50, 50, 0.8)')};
   &:hover {
     background-color: rgb(255, 255, 0, 0.7);
     color: rgb(50, 50, 50);

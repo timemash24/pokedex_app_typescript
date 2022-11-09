@@ -30,9 +30,8 @@ function Thumbnails() {
             </li>
           ))}
         </Container>
-      ) : (
-        <InfoMsg>No pokemon found 🤔</InfoMsg>
-      )}
+      ) : null}
+      {isSearching && !searchedPokemons.length && <InfoMsg>No pokemon found 🤔</InfoMsg>}
     </>
   );
 }

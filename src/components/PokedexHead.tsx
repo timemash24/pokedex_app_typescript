@@ -19,7 +19,8 @@ function PokedexHead({ text, isInput }: Props) {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(filterPokemons(textToSearch.toLowerCase()));
+
+    dispatch(filterPokemons(matchedList.map((name) => name.toLowerCase())));
     setTextToSearch('');
   };
 
@@ -40,7 +41,7 @@ function PokedexHead({ text, isInput }: Props) {
 
   const onClick = (e: React.MouseEvent<HTMLLIElement>) => {
     const target = e.target as HTMLLIElement;
-    dispatch(filterPokemons(target.innerText.toLowerCase()));
+    dispatch(filterPokemons([target.innerText.toLowerCase()]));
     setMatchedList([]);
     setTextToSearch('');
   };
@@ -61,12 +62,14 @@ function PokedexHead({ text, isInput }: Props) {
           break;
         case 'Enter':
           e.preventDefault();
-          if (index >= 0) {
-            dispatch(filterPokemons(matchedList[index].toLowerCase()));
-            setMatchedList([]);
-            setIndex(-1);
+          if (index === -1) {
+            dispatch(filterPokemons(matchedList.map((name) => name.toLowerCase())));
+          } else {
+            dispatch(filterPokemons([matchedList[index].toLowerCase()]));
             setTextToSearch('');
           }
+          setMatchedList([]);
+          setIndex(-1);
           break;
         case 'Escape':
           setMatchedList([]);

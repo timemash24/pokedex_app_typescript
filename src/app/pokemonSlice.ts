@@ -32,9 +32,18 @@ export const pokemonSlice = createSlice({
         }
       });
     },
-    filterPokemons: (state, action: PayloadAction<string>) => {
+    filterPokemons: (state, action: PayloadAction<string[]>) => {
       state.isSearching = true;
-      state.searchedPokemons = state.pokemonList.filter((pokemon) => pokemon.name === action.payload) || [];
+      const newSearchedPokemons: PokemonInfo[] = [];
+      action.payload.forEach((name) => {
+        state.pokemonList.forEach((pokemon) => {
+          if (name === pokemon.name) {
+            newSearchedPokemons.push(pokemon);
+          }
+        });
+      });
+      state.searchedPokemons = newSearchedPokemons;
+      // state.searchedPokemons = state.pokemonList.filter((pokemon) => pokemon.name === action.payload) || [];
     },
     resetPokemons: (state) => {
       return {

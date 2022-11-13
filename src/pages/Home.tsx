@@ -1,11 +1,12 @@
 import { getPokemonList, ListItem } from 'api/getPokemonList';
 import React, { useEffect, useState } from 'react';
 import Thumbnails from 'components/Thumbnails';
-import { useAppDispatch } from 'app/hooks';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { addPokemons } from 'app/pokemonSlice';
 
 function Home() {
   const dispatch = useAppDispatch();
+  const pokemonList = useAppSelector((state) => state.pokemons.pokemonList);
 
   const usePokemonList = async () => {
     try {
@@ -20,8 +21,9 @@ function Home() {
   };
 
   useEffect(() => {
+    if (pokemonList.length) return;
     usePokemonList();
-  }, []);
+  }, [pokemonList]);
 
   return <Thumbnails />;
 }

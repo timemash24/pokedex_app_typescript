@@ -2,6 +2,7 @@
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { filterPokemons } from 'app/pokemonSlice';
 import React, { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { AutoComplete, AutoCompleteContainter, Circle, HeadDeco, SearchForm, TextDisplay } from './styles/Main';
 
 type Props = {
@@ -81,6 +82,7 @@ function PokedexHead({ text, isInput }: Props) {
 
   return (
     <HeadDeco>
+      <Link to="/minigame">minigame</Link>
       <Circle color="blue" big />
       <Circle color="red" big={false} />
       <Circle color="yellow" big={false} />

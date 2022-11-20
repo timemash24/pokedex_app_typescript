@@ -144,6 +144,10 @@ export const InfoMsg = styled.section`
   border-radius: 0 0 5px 5px;
   text-align: center;
   font-size: 30px;
+  & p {
+    font-size: 20px;
+    height: 100px;
+  }
 `;
 
 export const SearchForm = styled.form`

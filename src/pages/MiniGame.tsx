@@ -4,8 +4,8 @@ import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { addPokemons } from 'app/pokemonSlice';
 import PokedexHead from 'components/PokedexHead';
 import QuizGame from 'components/QuizGame';
-import { QuizContainer } from 'components/styles/Game';
-import { Container } from 'components/styles/Main';
+import { QuizContainer, StartBtn } from 'components/styles/Game';
+import { Container, InfoMsg, TextDisplay } from 'components/styles/Main';
 import { IMG_URL, PokemonList } from 'components/Thumbnail';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -15,6 +15,7 @@ const CASE_COUNT = 4;
 function MiniGame() {
   const pokemonList = useAppSelector((state) => state.pokemons.pokemonList);
   // const pokemonList = useMemo(() => data, []);
+  const [start, setStart] = useState<boolean>(false);
   const [answer, setAnswer] = useState<PokemonList>();
   const [qList, setQList] = useState<PokemonList[]>();
 
@@ -58,10 +59,15 @@ function MiniGame() {
   return (
     <div>
       <PokedexHead text="Mini Game" isInput={false} />
-      <QuizContainer>
-        <p>Guess the name of Pokemon!</p>
-        {answer && qList && <QuizGame answer={answer} qList={qList} />}
-      </QuizContainer>
+
+      {!start ? (
+        <InfoMsg>
+          <p>Guess the name of Pokemon!</p>
+          <StartBtn onClick={() => setStart(!start)}>GAME START🎮</StartBtn>
+        </InfoMsg>
+      ) : (
+        <QuizContainer>{answer && qList && <QuizGame answer={answer} qList={qList} />}</QuizContainer>
+      )}
     </div>
   );
 }

@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 export const QuizContainer = styled.section`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   max-height: 550px;
   width: 100%;
   align-self: center;
@@ -17,6 +18,7 @@ export const QuizChoiceContainer = styled.ul`
   grid-template-columns: 1fr 1fr;
   align-items: center;
   justify-items: center;
+  padding: 20px 0;
 `;
 
 export const QuizChoice = styled.li`
@@ -37,5 +39,21 @@ export const QuizChoice = styled.li`
     background: grey;
     transition: 0.2s;
     cursor: pointer;
+  }
+`;
+
+export const StartBtn = styled.span`
+  background: yellow;
+  padding: 30px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 4px 8px 0 rgb(0, 0, 0, 0.5);
+  &:hover {
+    box-shadow: 1px 1px 0 rgb(0, 0, 0, 0.5);
+    position: relative;
+    top: 2px;
   }
 `;

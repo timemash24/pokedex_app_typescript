@@ -17,16 +17,16 @@ function QuizGame({ answer, qList }: Props) {
   };
 
   return (
-    <div>
+    <>
       {answer && (
-        <ImageContainer isBaby>
+        <ImageContainer isBaby isCorrect={correct}>
           <img src={`${IMG_URL}/${answer.id}.png`} alt="question img" />
         </ImageContainer>
       )}
       <QuizChoiceContainer onClick={onClick}>
         {qList && qList.map((q) => <QuizChoice key={q.name}>{q.name}</QuizChoice>)}
       </QuizChoiceContainer>
-    </div>
+    </>
   );
 }
 

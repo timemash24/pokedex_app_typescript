@@ -10,7 +10,7 @@ type Props = {
 
 function InfoImg({ isBaby, prevEvolImg, pokemon }: Props) {
   return (
-    <ImageContainer isBaby={isBaby}>
+    <ImageContainer isBaby={isBaby} isCorrect={0}>
       <img src={pokemon?.sprites.front_default} alt="front" />
       <img src={pokemon?.sprites.back_default} alt="back" />
       {!isBaby && prevEvolImg !== '' ? <img src={prevEvolImg} alt="evolves from" /> : null}

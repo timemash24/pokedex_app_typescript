@@ -13,12 +13,17 @@ export const InfoContainer = styled.div`
   max-width: 600px;
 `;
 
-export const ImageContainer = styled.section<{ isBaby: boolean }>`
+export const ImageContainer = styled.section<{ isBaby: boolean; isCorrect: number }>`
   display: flex;
   max-width: 600px;
   padding: 10px;
   margin: 10px;
-  background: linear-gradient(45deg, transparent 15px, rgb(50, 50, 50) 0);
+  /* background: linear-gradient(45deg, transparent 15px, rgb(50, 50, 50) 0); */
+  background: ${(props) => {
+    if (props.isCorrect === -1) return 'tomato';
+    if (props.isCorrect === 1) return 'green';
+    return 'linear-gradient(45deg, transparent 15px, rgb(50, 50, 50) 0)';
+  }};
   justify-content: center;
   align-items: center;
   border-radius: 5px;

@@ -2,7 +2,7 @@
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { filterPokemons } from 'app/pokemonSlice';
 import React, { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AutoComplete, AutoCompleteContainter, Circle, HeadDeco, SearchForm, TextDisplay } from './styles/Main';
 
 type Props = {
@@ -17,7 +17,7 @@ function PokedexHead({ text, isInput }: Props) {
   const [textToSearch, setTextToSearch] = useState<string>('');
   const [matchedList, setMatchedList] = useState<string[]>([]);
   const [index, setIndex] = useState<number>(-1);
-
+  const navigate = useNavigate();
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -82,8 +82,8 @@ function PokedexHead({ text, isInput }: Props) {
 
   return (
     <HeadDeco>
-      <Link to="/minigame">minigame</Link>
-      <Circle color="blue" big />
+      {/* <Link to="/minigame">minigame</Link> */}
+      <Circle color="blue" big onClick={() => navigate('/minigame')} />
       <Circle color="red" big={false} />
       <Circle color="yellow" big={false} />
       <Circle color="green" big={false} />

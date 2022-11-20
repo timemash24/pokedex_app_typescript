@@ -2,7 +2,9 @@
 import { getPokemonList } from 'api/getPokemonList';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { addPokemons } from 'app/pokemonSlice';
+import PokedexHead from 'components/PokedexHead';
 import QuizGame from 'components/QuizGame';
+import { Container } from 'components/styles/Main';
 import { IMG_URL, PokemonList } from 'components/Thumbnail';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -54,8 +56,11 @@ function MiniGame() {
   }, [pokemonList]);
   return (
     <div>
-      <p>Guess the name of Pokemon!</p>
-      {answer && qList && <QuizGame answer={answer} qList={qList} />}
+      <PokedexHead text="Mini Game" isInput={false} />
+      <Container>
+        <p>Guess the name of Pokemon!</p>
+        {answer && qList && <QuizGame answer={answer} qList={qList} />}
+      </Container>
     </div>
   );
 }

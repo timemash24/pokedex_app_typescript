@@ -84,13 +84,23 @@ export const Circle = styled.div<{ color: string; big: boolean }>`
   height: 40px;
   background: ${(props) => props.color || 'grey'};
   border-radius: 50%;
-  border: solid grey 5px;
+  /* border: solid grey 5px; */
+  cursor: pointer;
   margin: 5px;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 6px 0 rgb(0, 0, 0, 0.5);
   ${(props) =>
     props.big &&
     css`
       width: 100px;
       height: 100px;
+      box-shadow: 3px 8px 0 rgb(0, 0, 0, 0.5);
+      &:hover {
+        box-shadow: 1px 1px 0 rgb(0, 0, 0, 0.5);
+        position: relative;
+        top: 2px;
+      }
     `}
 `;
 

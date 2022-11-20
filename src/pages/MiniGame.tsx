@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { addPokemons } from 'app/pokemonSlice';
 import PokedexHead from 'components/PokedexHead';
 import QuizGame from 'components/QuizGame';
+import { QuizContainer } from 'components/styles/Game';
 import { Container } from 'components/styles/Main';
 import { IMG_URL, PokemonList } from 'components/Thumbnail';
 import React, { useEffect, useMemo, useState } from 'react';
@@ -57,10 +58,10 @@ function MiniGame() {
   return (
     <div>
       <PokedexHead text="Mini Game" isInput={false} />
-      <Container>
+      <QuizContainer>
         <p>Guess the name of Pokemon!</p>
         {answer && qList && <QuizGame answer={answer} qList={qList} />}
-      </Container>
+      </QuizContainer>
     </div>
   );
 }

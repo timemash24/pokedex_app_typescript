@@ -1,28 +1,29 @@
+import { PayloadAction } from '@reduxjs/toolkit';
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from './store';
 
 interface scoreState {
-  score: number;
+  score: Array<boolean>;
 }
 const initialState: scoreState = {
-  score: 0,
+  score: [],
 };
 
 export const gameSlice = createSlice({
   name: 'gameResult',
   initialState,
   reducers: {
-    increaseScore: (state) => {
-      state.score += 1;
+    addScore: (state, action: PayloadAction<boolean>) => {
+      state.score.push(action.payload);
     },
     resetScore: (state) => {
-      state.score = 0;
+      state.score = [];
     },
   },
 });
 
-export const { increaseScore, resetScore } = gameSlice.actions;
+export const { addScore, resetScore } = gameSlice.actions;
 
 export const selectScore = (state: RootState) => state.game;
 

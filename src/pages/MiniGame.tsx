@@ -61,7 +61,9 @@ function MiniGame() {
       usePokemonList();
     }
     console.log(qCnt);
-    if (qCnt.current <= QUIZ_NUM) generateQ();
+    if (qCnt.current === 0) generateQ();
+    else if (qCnt.current <= QUIZ_NUM) setTimeout(() => generateQ(), 800);
+    else console.log('quiz end');
   }, [pokemonList, score]);
 
   useEffect(() => {
@@ -72,7 +74,6 @@ function MiniGame() {
   return (
     <div>
       <PokedexHead text="Mini Game" isInput={false} />
-
       {!start ? (
         <InfoMsg>
           <p>Guess the name of Pokemon!</p>

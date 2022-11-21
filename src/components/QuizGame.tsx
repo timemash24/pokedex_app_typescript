@@ -1,4 +1,4 @@
-import { increaseScore } from 'app/gameSlice';
+import { addScore } from 'app/gameSlice';
 import { useAppDispatch } from 'app/hooks';
 import React, { useEffect, useState } from 'react';
 import { QuizChoice, QuizChoiceContainer } from './styles/Game';
@@ -18,8 +18,11 @@ function QuizGame({ answer, qList }: Props) {
     const target = e.target as HTMLLIElement;
     if (target.innerText === answer.name) {
       setCorrect(1);
-      dispatch(increaseScore());
-    } else setCorrect(-1);
+      dispatch(addScore(true));
+    } else {
+      setCorrect(-1);
+      dispatch(addScore(false));
+    }
   };
 
   useEffect(() => {

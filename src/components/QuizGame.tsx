@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import { increaseScore } from 'app/gameSlice';
+import { useAppDispatch } from 'app/hooks';
+import React, { useEffect, useState } from 'react';
 import { QuizChoice, QuizChoiceContainer } from './styles/Game';
 import { ImageContainer } from './styles/Info';
 import { IMG_URL, PokemonList } from './Thumbnail';
@@ -10,11 +12,19 @@ type Props = {
 
 function QuizGame({ answer, qList }: Props) {
   const [correct, setCorrect] = useState<number>(0);
+  const dispatch = useAppDispatch();
+
   const onClick = (e: React.MouseEvent<HTMLUListElement>) => {
     const target = e.target as HTMLLIElement;
-    if (target.innerText === answer.name) setCorrect(1);
-    else setCorrect(-1);
+    if (target.innerText === answer.name) {
+      setCorrect(1);
+      dispatch(increaseScore());
+    } else setCorrect(-1);
   };
+
+  useEffect(() => {
+    setCorrect(0);
+  }, [answer]);
 
   return (
     <>

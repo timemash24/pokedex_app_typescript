@@ -1,5 +1,6 @@
 /* eslint-disable no-plusplus */
 import { getPokemonList } from 'api/getPokemonList';
+import { resetScore } from 'app/gameSlice';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { addPokemons } from 'app/pokemonSlice';
 import PokedexHead from 'components/PokedexHead';
@@ -7,17 +8,21 @@ import QuizGame from 'components/QuizGame';
 import { QuizContainer, StartBtn } from 'components/styles/Game';
 import { Container, InfoMsg, TextDisplay } from 'components/styles/Main';
 import { IMG_URL, PokemonList } from 'components/Thumbnail';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // type Props = {}
 const CASE_COUNT = 4;
+const QUIZ_NUM = 10;
+
 function MiniGame() {
   const pokemonList = useAppSelector((state) => state.pokemons.pokemonList);
-  // const pokemonList = useMemo(() => data, []);
+  const score = useAppSelector((state) => state.game.score);
+
   const [start, setStart] = useState<boolean>(false);
   const [answer, setAnswer] = useState<PokemonList>();
   const [qList, setQList] = useState<PokemonList[]>();
+  const qCnt = useRef<number>(-1);
 
   const dispatch = useAppDispatch();
 
@@ -36,6 +41,7 @@ function MiniGame() {
     const ans = arr[Math.floor(Math.random() * arr.length)];
     setAnswer(ans);
     setQList(arr);
+    qCnt.current += 1;
   };
 
   const usePokemonList = async () => {
@@ -54,8 +60,15 @@ function MiniGame() {
     if (!pokemonList.length) {
       usePokemonList();
     }
-    generateQ();
-  }, [pokemonList]);
+    console.log(qCnt);
+    if (qCnt.current <= QUIZ_NUM) generateQ();
+  }, [pokemonList, score]);
+
+  useEffect(() => {
+    dispatch(resetScore());
+    setStart(false);
+  }, []);
+
   return (
     <div>
       <PokedexHead text="Mini Game" isInput={false} />

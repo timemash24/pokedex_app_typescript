@@ -42,7 +42,7 @@ export const QuizChoice = styled.li`
   }
 `;
 
-export const StartBtn = styled.span`
+export const GameBtn = styled.span`
   background: yellow;
   padding: 30px;
   border-radius: 5px;
@@ -51,9 +51,32 @@ export const StartBtn = styled.span`
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: 4px 8px 0 rgb(0, 0, 0, 0.5);
+  margin: 0 20px;
   &:hover {
     box-shadow: 1px 1px 0 rgb(0, 0, 0, 0.5);
     position: relative;
     top: 2px;
   }
+`;
+
+export const GameContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-height: 550px;
+  width: 100%;
+  background-color: #cb3737;
+  font-size: 20px;
+  & p {
+    padding: 20px;
+  }
+`;
+
+export const GameBtnContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0 50px 0;
 `;

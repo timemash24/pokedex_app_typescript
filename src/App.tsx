@@ -4,6 +4,7 @@ import Nav from 'components/Nav';
 import Home from 'pages/Home';
 import Detail from 'pages/Detail';
 import MiniGame from 'pages/MiniGame';
+import GameResult from 'pages/GameResult';
 import { GlobalStyle } from 'global-style';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/pokemon/:id" element={<Detail />} />
         <Route path="/minigame" element={<MiniGame />} />
+        <Route path="/minigame/result" element={<GameResult />} />
       </Routes>
     </Router>
   );

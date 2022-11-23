@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { addPokemons } from 'app/pokemonSlice';
 import PokedexHead from 'components/PokedexHead';
 import QuizGame from 'components/QuizGame';
-import { QuizContainer, StartBtn } from 'components/styles/Game';
+import { QuizContainer, GameBtn, GameContainer, GameBtnContainer } from 'components/styles/Game';
 import { Container, InfoMsg, TextDisplay } from 'components/styles/Main';
 import { IMG_URL, PokemonList } from 'components/Thumbnail';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 
 // type Props = {}
 const CASE_COUNT = 4;
-const QUIZ_NUM = 10;
+export const QUIZ_NUM = 10;
 
 function MiniGame() {
   const pokemonList = useAppSelector((state) => state.pokemons.pokemonList);
@@ -23,8 +23,8 @@ function MiniGame() {
   const [answer, setAnswer] = useState<PokemonList>();
   const [qList, setQList] = useState<PokemonList[]>();
   const qCnt = useRef<number>(-1);
-
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const getRandomPokemons = () => {
     const result = [];
@@ -62,8 +62,8 @@ function MiniGame() {
     }
     console.log(qCnt);
     if (qCnt.current === 0) generateQ();
-    else if (qCnt.current <= QUIZ_NUM) setTimeout(() => generateQ(), 800);
-    else console.log('quiz end');
+    else if (qCnt.current <= QUIZ_NUM) setTimeout(() => generateQ(), 700);
+    else navigate('/minigame/result');
   }, [pokemonList, score]);
 
   useEffect(() => {
@@ -72,17 +72,19 @@ function MiniGame() {
   }, []);
 
   return (
-    <div>
+    <>
       <PokedexHead text="Mini Game" isInput={false} />
       {!start ? (
-        <InfoMsg>
+        <GameContainer>
           <p>Guess the name of Pokemon!</p>
-          <StartBtn onClick={() => setStart(!start)}>GAME START🎮</StartBtn>
-        </InfoMsg>
+          <GameBtnContainer>
+            <GameBtn onClick={() => setStart(!start)}>GAME START🎮</GameBtn>
+          </GameBtnContainer>
+        </GameContainer>
       ) : (
         <QuizContainer>{answer && qList && <QuizGame answer={answer} qList={qList} />}</QuizContainer>
       )}
-    </div>
+    </>
   );
 }
 

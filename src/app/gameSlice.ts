@@ -5,9 +5,11 @@ import { RootState } from './store';
 
 interface scoreState {
   score: Array<boolean>;
+  quiz: Array<string>;
 }
 const initialState: scoreState = {
   score: [],
+  quiz: [],
 };
 
 export const gameSlice = createSlice({
@@ -20,10 +22,16 @@ export const gameSlice = createSlice({
     resetScore: (state) => {
       state.score = [];
     },
+    addQuiz: (state, action: PayloadAction<string>) => {
+      state.quiz.push(action.payload);
+    },
+    resetQuiz: (state) => {
+      state.quiz = [];
+    },
   },
 });
 
-export const { addScore, resetScore } = gameSlice.actions;
+export const { addScore, resetScore, addQuiz, resetQuiz } = gameSlice.actions;
 
 export const selectScore = (state: RootState) => state.game;
 

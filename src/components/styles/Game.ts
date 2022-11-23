@@ -67,6 +67,7 @@ export const GameContainer = styled.div`
   max-height: 550px;
   width: 100%;
   background-color: #cb3737;
+  border-radius: 0 0 5px 5px;
   font-size: 20px;
   & p {
     padding: 20px;

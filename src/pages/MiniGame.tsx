@@ -1,6 +1,6 @@
 /* eslint-disable no-plusplus */
 import { getPokemonList } from 'api/getPokemonList';
-import { resetScore } from 'app/gameSlice';
+import { addQuiz, resetQuiz, resetScore } from 'app/gameSlice';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { addPokemons } from 'app/pokemonSlice';
 import PokedexHead from 'components/PokedexHead';
@@ -18,6 +18,7 @@ export const QUIZ_NUM = 10;
 function MiniGame() {
   const pokemonList = useAppSelector((state) => state.pokemons.pokemonList);
   const score = useAppSelector((state) => state.game.score);
+  const quiz = useAppSelector((state) => state.game.quiz);
 
   const [start, setStart] = useState<boolean>(false);
   const [answer, setAnswer] = useState<PokemonList>();
@@ -28,7 +29,7 @@ function MiniGame() {
 
   const getRandomPokemons = () => {
     const result = [];
-    const arr = pokemonList.slice();
+    const arr = pokemonList.slice().filter((pokemon) => !quiz.includes(pokemon.name));
     for (let i = 0; i < CASE_COUNT; i++) {
       const randIdx = Math.floor(Math.random() * arr.length);
       result.push(...arr.splice(randIdx, 1));
@@ -40,6 +41,7 @@ function MiniGame() {
     const arr = getRandomPokemons();
     const ans = arr[Math.floor(Math.random() * arr.length)];
     setAnswer(ans);
+    dispatch(addQuiz(ans.name));
     setQList(arr);
     qCnt.current += 1;
   };
@@ -60,14 +62,14 @@ function MiniGame() {
     if (!pokemonList.length) {
       usePokemonList();
     }
-    console.log(qCnt);
     if (qCnt.current === 0) generateQ();
     else if (qCnt.current <= QUIZ_NUM) setTimeout(() => generateQ(), 700);
-    else navigate('/minigame/result');
+    else setTimeout(() => navigate('/minigame/result'), 700);
   }, [pokemonList, score]);
 
   useEffect(() => {
     dispatch(resetScore());
+    dispatch(resetQuiz());
     setStart(false);
   }, []);
 

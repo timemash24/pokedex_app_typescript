@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Thumbnails from 'components/Thumbnails';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { addPokemons } from 'app/pokemonSlice';
+import { useQuery, useQueryClient } from 'react-query';
 
 function Home() {
   const dispatch = useAppDispatch();
@@ -20,11 +21,30 @@ function Home() {
     }
   };
 
-  useEffect(() => {
-    if (pokemonList.length) return;
-    usePokemonList();
-  }, [pokemonList]);
+  // useEffect(() => {
+  //   console.log(data);
+  //   if (pokemonList.length) return;
+  //   usePokemonList();
+  // }, [pokemonList]);
 
+  const { data, isLoading, isError, error } = useQuery('pokemonList', getPokemonList, {
+    retry: 0, // 실패시 재호출 몇번 할지
+    onSuccess: (data) => {
+      console.log(data);
+      if (data) dispatch(addPokemons(data.results));
+    },
+    onError: (e: any) => {
+      console.log(e.message);
+    },
+  });
+
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
+
+  if (isError) {
+    return <span>Error: {(error as any).message}</span>;
+  }
   return <Thumbnails />;
 }
 

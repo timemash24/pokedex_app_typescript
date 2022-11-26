@@ -24,31 +24,31 @@ function Detail() {
   const [prevEvolImg, setPrevEvolImg] = useState<string>('');
   const [isBaby, setIsBaby] = useState(true);
 
-  const usePokemon = async () => {
-    try {
-      await getPokemon(numId).then((res) => {
-        if (res) {
-          setPokemon(res);
-        }
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const usePokemon = async () => {
+  //   try {
+  //     await getPokemon(numId).then((res) => {
+  //       if (res) {
+  //         setPokemon(res);
+  //       }
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  const usePokemonSpecies = async () => {
-    try {
-      await getPokemonSpecies(numId).then((res) => {
-        if (res) {
-          setPokemonSpecies(res);
-          if (res.evolves_from_species?.url) getPrevEvolSprite(res.evolves_from_species.url);
-          else setIsBaby(true);
-        }
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const usePokemonSpecies = async () => {
+  //   try {
+  //     await getPokemonSpecies(numId).then((res) => {
+  //       if (res) {
+  //         setPokemonSpecies(res);
+  //         if (res.evolves_from_species?.url) getPrevEvolSprite(res.evolves_from_species.url);
+  //         else setIsBaby(true);
+  //       }
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const getPrevEvolSprite = (url: string) => {
     const arr = url.split('/');
@@ -61,27 +61,28 @@ function Detail() {
     {
       queryKey: ['pokemon', numId],
       queryFn: () => getPokemon(numId),
+      refetchOnMount: true,
     },
     {
       queryKey: ['pokemonSpecies', numId],
       queryFn: () => getPokemonSpecies(numId),
+      refetchOnMount: true,
     },
   ]);
 
   useEffect(() => {
-    usePokemon();
-    usePokemonSpecies();
+    // usePokemon();
+    // usePokemonSpecies();
+    const [pokemonData, pokemonSpeciesData] = query;
 
-    // console.log(query);
-    // const [pokemonData, pokemonSpeciesData] = query;
-    // if (pokemonData.data) setPokemon(pokemonData.data);
-    // if (pokemonSpeciesData.data) {
-    //   setPokemonSpecies(pokemonSpeciesData.data);
-    //   if (pokemonSpeciesData.data.evolves_from_species?.url)
-    //     getPrevEvolSprite(pokemonSpeciesData.data.evolves_from_species.url);
-    //   else setIsBaby(true);
-    // }
-  }, [id]);
+    if (pokemonData.isSuccess && pokemonData.data) setPokemon(pokemonData.data);
+    if (pokemonSpeciesData.isSuccess && pokemonSpeciesData.data) {
+      setPokemonSpecies(pokemonSpeciesData.data);
+      if (pokemonSpeciesData.data.evolves_from_species?.url)
+        getPrevEvolSprite(pokemonSpeciesData.data.evolves_from_species.url);
+      else setIsBaby(true);
+    }
+  }, [query, id]);
 
   return (
     <>

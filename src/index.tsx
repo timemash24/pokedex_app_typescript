@@ -8,7 +8,7 @@ import store from './app/store';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 5000,
+      staleTime: 50000,
       cacheTime: Infinity,
       refetchOnMount: false,
       refetchOnWindowFocus: false,

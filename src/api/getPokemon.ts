@@ -50,7 +50,7 @@ export interface Pokemon {
 export const getPokemon = async (id: number) => {
   try {
     const { data } = await axios.get<Pokemon>(`${BASE_URL}/${id}`);
-    // console.log(data);
+    console.log('pokemon api');
     return data;
   } catch (error) {
     console.log(error);

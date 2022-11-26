@@ -10,6 +10,7 @@ import { Container } from 'components/styles/Main';
 import { InfoContainer, PageController } from 'components/styles/Info';
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { useQueries } from 'react-query';
 
 library.add(faS, faCaretLeft, faCaretRight);
 
@@ -56,9 +57,30 @@ function Detail() {
     setIsBaby(false);
   };
 
+  const query = useQueries([
+    {
+      queryKey: ['pokemon', numId],
+      queryFn: () => getPokemon(numId),
+    },
+    {
+      queryKey: ['pokemonSpecies', numId],
+      queryFn: () => getPokemonSpecies(numId),
+    },
+  ]);
+
   useEffect(() => {
     usePokemon();
     usePokemonSpecies();
+
+    // console.log(query);
+    // const [pokemonData, pokemonSpeciesData] = query;
+    // if (pokemonData.data) setPokemon(pokemonData.data);
+    // if (pokemonSpeciesData.data) {
+    //   setPokemonSpecies(pokemonSpeciesData.data);
+    //   if (pokemonSpeciesData.data.evolves_from_species?.url)
+    //     getPrevEvolSprite(pokemonSpeciesData.data.evolves_from_species.url);
+    //   else setIsBaby(true);
+    // }
   }, [id]);
 
   return (

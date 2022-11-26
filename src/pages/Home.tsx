@@ -9,17 +9,17 @@ function Home() {
   const dispatch = useAppDispatch();
   const pokemonList = useAppSelector((state) => state.pokemons.pokemonList);
 
-  const usePokemonList = async () => {
-    try {
-      await getPokemonList().then((res) => {
-        if (res) {
-          dispatch(addPokemons(res.results));
-        }
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const usePokemonList = async () => {
+  //   try {
+  //     await getPokemonList().then((res) => {
+  //       if (res) {
+  //         dispatch(addPokemons(res.results));
+  //       }
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   // useEffect(() => {
   //   console.log(data);
@@ -27,7 +27,7 @@ function Home() {
   //   usePokemonList();
   // }, [pokemonList]);
 
-  const { data, isLoading, isError, error } = useQuery('pokemonList', getPokemonList, {
+  const { data, isLoading, isError, error } = useQuery(['pokemonList'], getPokemonList, {
     retry: 0, // 실패시 재호출 몇번 할지
     onSuccess: (data) => {
       console.log(data);

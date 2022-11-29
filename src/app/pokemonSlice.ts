@@ -57,6 +57,4 @@ export const pokemonSlice = createSlice({
 
 export const { addPokemons, filterPokemons, resetPokemons } = pokemonSlice.actions;
 
-export const selectPokemonList = (state: RootState) => state.pokemons;
-
 export default pokemonSlice.reducer;

@@ -33,6 +33,4 @@ export const gameSlice = createSlice({
 
 export const { addScore, resetScore, addQuiz, resetQuiz } = gameSlice.actions;
 
-export const selectScore = (state: RootState) => state.game;
-
 export default gameSlice.reducer;
